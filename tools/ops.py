@@ -11,7 +11,7 @@ except:
   image_summary = tf.summary.image
   scalar_summary = tf.summary.scalar
   histogram_summary = tf.summary.histogram
-  merge_summary = tf.summary.merge_all
+  merge_summary = tf.summary.merge
   SummaryWriter = tf.summary.FileWriter
 
 def sigmoid_cross_entropy_with_logits(x, y):
