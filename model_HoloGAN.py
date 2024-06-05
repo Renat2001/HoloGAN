@@ -50,9 +50,9 @@ class HoloGAN(object):
       build_func()
 
   def build_HoloGAN(self):
-    self.view_in = tf.placeholder(tf.float32, [None, 6], name='view_in')
-    self.inputs = tf.placeholder(tf.float32, [None, self.output_height, self.output_width, self.c_dim], name='real_images')
-    self.z = tf.placeholder(tf.float32, [None, cfg['z_dim']], name='z')
+    self.view_in = tf.keras.Input(shape=(6,), name='view_in', dtype=tf.float32)
+    self.inputs = tf.keras.Input(shape=(self.output_height, self.output_width, self.c_dim), name='real_images', dtype=tf.float32)
+    self.z = tf.keras.Input(shape=(cfg['z_dim'],), name='z', dtype=tf.float32)
     inputs = self.inputs
 
     gen_func = eval("self." + (cfg['generator']))
@@ -113,8 +113,8 @@ class HoloGAN(object):
     self.saver = tf.train.Saver()
 
   def train_HoloGAN(self, config):
-      self.d_lr_in = tf.placeholder(tf.float32, None, name='d_eta')
-      self.g_lr_in = tf.placeholder(tf.float32, None, name='d_eta')
+      self.d_lr_in = tf.Variable(cfg['d_eta'], name='d_eta', dtype=tf.float32)
+      self.g_lr_in = tf.Variable(cfg['g_eta'], name='g_eta', dtype=tf.float32)
 
       d_optim = tf.train.AdamOptimizer(cfg['d_eta'], beta1=cfg['beta1'], beta2=cfg['beta2']).minimize(self.d_loss, var_list=self.d_vars)
       g_optim = tf.train.AdamOptimizer(cfg['g_eta'], beta1=cfg['beta1'], beta2=cfg['beta2']).minimize(self.g_loss, var_list=self.g_vars)
