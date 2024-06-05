@@ -16,7 +16,7 @@ from tools.rotation_utils import *
 
 
 import tensorflow as tf
-import tensorflow.contrib.slim as slim
+import tf_slim as slim
 import glob
 import os
 import random
