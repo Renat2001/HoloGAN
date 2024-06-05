@@ -5,6 +5,8 @@ import tensorflow as tf
 import numpy as np
 import argparse
 
+print(sys.argv[1])
+
 # Load configuration from the first command-line argument
 with open(sys.argv[1], 'r') as fh:
     cfg = json.load(fh)
@@ -19,6 +21,7 @@ from tools.utils import pp, show_all_variables
 
 def parse_args():
     parser = argparse.ArgumentParser()
+    parser.add_argument("--config", type=str)
     parser.add_argument("--input_height", type=int, default=108, help="The size of image to use (will be center cropped). [108] or [128] for celebA and lsun, [400] for chairs. Cats and Cars are already cropped")
     parser.add_argument("--input_width", type=int, default=None, help="The size of image to use (will be center cropped). If None, same value as input_height [None]")
     parser.add_argument("--output_height", type=int, default=64, help="The size of the output images to produce 64 or 128")
