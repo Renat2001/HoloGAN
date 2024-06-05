@@ -6,7 +6,7 @@ import json
 import shutil
 
 
-with open(sys.argv[1], 'r') as fh:
+with open(sys.argv[2], 'r') as fh:
     cfg=json.load(fh)
 IMAGE_PATH       = cfg['image_path']
 OUTPUT_DIR = cfg['output_dir']
