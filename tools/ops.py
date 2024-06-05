@@ -12,7 +12,7 @@ except:
   scalar_summary = tf.summary.scalar
   histogram_summary = tf.summary.histogram
   merge_summary = None  # No equivalent in TF 2.x
-  SummaryWriter = tf.summary.FileWriter
+  SummaryWriter = tf.summary.create_file_writer
 
 def sigmoid_cross_entropy_with_logits(x, y):
     try:
