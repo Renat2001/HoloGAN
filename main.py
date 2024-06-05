@@ -5,10 +5,10 @@ import tensorflow as tf
 import numpy as np
 import argparse
 
-print(sys.argv[1])
+print(sys.argv[2])
 
 # Load configuration from the first command-line argument
-with open(sys.argv[1], 'r') as fh:
+with open(sys.argv[2], 'r') as fh:
     cfg = json.load(fh)
 
 OUTPUT_DIR = cfg['output_dir']
