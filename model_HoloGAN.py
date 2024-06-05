@@ -50,9 +50,9 @@ class HoloGAN(object):
       build_func()
 
   def build_HoloGAN(self):
-    self.view_in = tf.keras.Input(shape=(6,), name='view_in', dtype=tf.float32)
-    self.inputs = tf.keras.Input(shape=(self.output_height, self.output_width, self.c_dim), name='real_images', dtype=tf.float32)
-    self.z = tf.keras.Input(shape=(cfg['z_dim'],), name='z', dtype=tf.float32)
+    self.view_in = tf.Variable(initial_value=tf.zeros(shape=(None, 6), dtype=tf.float32), name='view_in')
+    self.inputs = tf.Variable(initial_value=tf.zeros(shape=(None, self.output_height, self.output_width, self.c_dim), dtype=tf.float32), name='real_images')
+    self.z = tf.Variable(initial_value=tf.zeros(shape=(None, cfg['z_dim']), dtype=tf.float32), name='z')
     inputs = self.inputs
 
     gen_func = eval("self." + (cfg['generator']))
